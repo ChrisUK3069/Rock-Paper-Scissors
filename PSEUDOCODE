@@ -1,0 +1,73 @@
+ 			** TOP Rock Paper Sscissors PsuedoCode **
+
+Objective: To build a rock paper scissors program that outputs the winner 
+and results to console.log.
+
+1. User enters 'rock', 'paper' or 'scissors' into the prompt.
+2. Computers enters thier choice, via a random function call.
+3. a conditional statement decides who is the winner/draw based on the 
+provided data.
+4 Out of given to console.log confirming the winner out of 5 rounds, keeping 
+score of the players.
+
+Understand the problem > Plan > Pseudocode > 
+Divide and conquer (Coding smaller maneagable parts)  
+
+permutations(9):  (W) rock>scissors |  (W) scissors>paper |  (W) paper>rock | 
+		  (L) scissors>rock |  (L) paper>scissors |  (L) rock>paper | 
+		  (D) rock/rock |   (D) scissors/scissors |  (D) paper/paper 
+
+					PSEUDOCODE
+		-----------------------------------------------------
+
+FUNCTION getComputerChoice()
+	Create a random number from 1-3
+	IF random number is 1 THEN
+	 return the variable 'rock'
+	ELSE IF random number is 2 THEN
+	 return the variable 'paper'
+	ELSE 
+ 	return the variable 'scissors'
+
+FUNCTION playRound(playerSelection, computerSelection)
+        IF computerSelection == 'rock and playerSelection == 'paper' THEN
+		RETURN "You have won."
+	ELSE IF computerSelection == "scissors" and playerSelection == 'rock' THEN
+		RETURN "You have won."
+	ELSE IF computerSelection == "paper" and playerSelection == 'scissors' THEN
+		RETURN "You have won."
+	ELSE IF computerSelection == 'rock' and player Selection == 'scissors' THEN
+		RETURN "You have lost."
+	ELSE IF computerSelection == paper and playerSelection == 'rock' THEN
+		RETURN "You have lost."
+	ELSE IF computerSelection == 'scissors' and plauerSelection == 'paper' THEN
+		RETURN "You have lost."
+	ELSE
+		RETURN "It is a draw."
+
+
+SET playerSelection = "rock";
+SET computerSelection = getComputerChoice()
+console.log(playRound(playerSelection, computerSelection));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
