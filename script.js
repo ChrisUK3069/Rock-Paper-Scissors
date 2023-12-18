@@ -15,31 +15,49 @@ function getComputerChoice() {
 function playRound(playerSelection, computerSelection) {
     if (computerSelection === "rock" && playerSelection === "paper") {
         userScore = userScore + 1;
-        return "You have won. paper beats rock.";
+        results.textContent = `You chose ` + playerSelection + 
+            `.  Opponent chose ` + computerSelection + 
+            `.  You win, earnt 1 point.`;
+            return;
     } else if (computerSelection === "scissors" && playerSelection === "rock") {
          userScore = userScore + 1;
-         return "You have won. rock beats scissors.";
+         results.textContent = `You chose ` + playerSelection + 
+            `.  Opponent chose ` + computerSelection + 
+            `.  You win, earnt 1 point.`;
+            return;
   } else if (computerSelection === "paper" && playerSelection === "scissors") {
         userScore = userScore + 1;
-        return "You have won. scissors beats paper.";
+        results.textContent = `You chose ` + playerSelection + 
+            `.  Opponent chose ` + computerSelection + 
+            `.  You win, earnt 1 point.`;
+            return;
  } else if (computerSelection === "rock" && playerSelection === "scissors") {
     computerScore = computerScore + 1;
-    return "You have lost. rock beats scissors.";
+    results.textContent = `You chose ` + playerSelection + 
+            `.  Opponent chose ` + computerSelection + 
+            `.  You lost, try again.`;
+            return;
  } else if (computerSelection === "paper" && playerSelection === "rock") {
     computerScore = computerScore + 1;
-    return "You have lost. paper beats rock.";
+    results.textContent = `You chose ` + playerSelection + 
+            `.  Opponent chose ` + computerSelection + 
+            `.  You lost, try again.`;
+            return;
  } else if (computerSelection === "scissors" && playerSelection === "paper") {
     computerScore = computerScore + 1;
-    return "You have lost. scissors beats paper.";
+    results.textContent = `You chose ` + playerSelection + 
+            `.  Opponent chose ` + computerSelection + 
+            `.  You lost, try again.`;
+            return;
  } else {
-    return "It is a draw."
+    results.textContent = `You chose ` + playerSelection + 
+            `.  Opponent chose ` + computerSelection + 
+            `.  It's a tie, try again.`;
+            return;
  }
 }
 
-function game(){
-    
-        return playRound(playerSelection, computerSelection);
-    }
+
 
     
 let playerSelection; 
@@ -48,36 +66,20 @@ let userScore = 0;
 let computerScore = 0;
 
 function begin(playerSelection) {
-    console.log(" ** Welcome to Rock Paper Scissors! **  ");
+
     const results = document.querySelector("#results");
     const scores = document.querySelector("#scores");
-    const winner = document.querySelector("#winner");
-    
+    // const winner = document.querySelector("#winner");
+    const winner = document.createElement("div");
+    winner.id = "theWinner";
+    document.body.appendChild(winner);
+
     //for (let step = 1; step < 6; step++) { remove logic to play 5 rounds
         //playerSelection = prompt("Please enter rock, paper or scissors: ");
         //playerSelection = playerSelection.toLowerCase();
 
         computerSelection = getComputerChoice();
-        console.log("Round:" , game()); // + step CODE FOR LOOP
-        console.log(" - User: " + userScore + ", Computer: " + computerScore)
-    //}
-
-    if (userScore > computerScore) {
-            console.log("You win, earnt 1 point.");
-            results.textContent = `You chose ` + playerSelection + 
-            `.  Opponent chose ` + computerSelection + 
-            `.  You win, earnt 1 point.`;
-        } else if (computerScore > userScore) {
-            console.log("You lost, please try again.")
-            results.textContent = `You chose ` + playerSelection + 
-            `.  Opponent chose ` + computerSelection + 
-            `.  You lost, try again.`;
-        } else {
-            console.log("Scores are tied, please try again.")
-            results.textContent = `You chose ` + playerSelection + 
-            `.  Opponent chose ` + computerSelection + 
-            `.  It's a tie, try again.`;
-         }
+        playRound(playerSelection, computerSelection);
 
     scores.textContent = `Running score, your points : ` + userScore + `
                         Opponents points ` + computerScore;
@@ -87,30 +89,25 @@ function begin(playerSelection) {
     } else if (computerScore === 5) {
          winner.textContent = "Opponent reaches 5 points, Player Loses."
     }
-                        
-
-
-
 }
-
-
-
-
 
 const btnRock = document.querySelector("#btnRock");
 btnRock.addEventListener("click", function ()  {
+    console.log("Rock button clicked");
     playerSelection = "rock";
     begin(playerSelection);
 });
 
 const btnPaper = document.querySelector("#btnPaper");
 btnPaper.addEventListener("click", function ()  {
+    console.log("paper button clicked");
     playerSelection = "paper";
     begin(playerSelection);
 });
 
 const btnScissors = document.querySelector("#btnScissors");
 btnScissors.addEventListener("click", function () {
+    console.log("scissors button clicked");
     playerSelection = "scissors";
     begin(playerSelection);
 });
